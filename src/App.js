@@ -1,14 +1,19 @@
 import { useState } from "react";
 
+const useInput = (initialValue) => {
+  const [value, setValue] = useState(initialValue);
+  const onChange = (event) => {
+    console.log(event.target);
+  };
+  return { value, onChange };
+};
+
 const App = () => {
-  const [item, setItem] = useState(1);
-  const incrementItem = () => setItem(item + 1);
-  const decrementItem = () => setItem(item - 1);
+  const name = useInput("Mr:");
   return (
     <div>
-      <div>{item}</div>
-      <button onClick={incrementItem}>Increment</button>
-      <button onClick={decrementItem}>Decrement</button>
+      <div>Hello</div>
+      <input placeholder={"name"} value={name.value} {...name} />
     </div>
   );
 };
